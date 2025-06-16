@@ -36,7 +36,14 @@ const Checkout = () => {
         style={{ padding: '0.5rem', marginBottom: '1rem', width: '250px' }}
       />
       <br />
-      <button onClick={handleCheckout} style={{ padding: '0.5rem 1.5rem' }}>
+      <button onClick={handleCheckout} style={{  marginTop:'1rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#2563eb',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '0.375rem',
+        cursor: 'pointer',
+        fontWeight: '500', }}>
         OK
       </button>
     </div>

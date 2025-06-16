@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../../utils/axios';
+import axios from '../utils/axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/slices/cartSlice';
+import { addToCart } from '../redux/Slice/slice';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Product = () => {
   const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cartItems = useSelector((state) => state.cart.items);
+  const handleClick = () => {
+    navigate('/create');
+   };
+   const handleCardClick = () => {
+    navigate('/card');
+   };
 
   useEffect(() => {
     axios.get('/products')
@@ -20,8 +27,10 @@ const Product = () => {
 
   const handleAdd = (product) => {
     dispatch(addToCart(product));
-    navigate('/card');
+    // navigate('/card');
+    toast.success('✅ Added to Cart!');
   };
+  
 
   return (
     <div style={{
@@ -37,11 +46,50 @@ const Product = () => {
         color: '#1f2937'
       }}>All Products</h2>
 
+<button
+      onClick={handleClick}
+      style={{
+        marginRight:'1rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#10b981',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '0.375rem',
+        fontWeight: '500',
+        cursor: 'pointer',
+        margin: '1rem 0'
+      }}
+      onMouseOver={(e) => (e.target.style.backgroundColor = '#059669')}
+      onMouseOut={(e) => (e.target.style.backgroundColor = '#10b981')}
+    >
+      ➕ Create Product
+    </button>
+
+    <button
+      onClick={handleCardClick}
+      style={{
+        marginLeft:'1rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#10b981',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '0.375rem',
+        fontWeight: '500',
+        cursor: 'pointer',
+        margin: '1rem 0'
+      }}
+      onMouseOver={(e) => (e.target.style.backgroundColor = '#059669')}
+      onMouseOut={(e) => (e.target.style.backgroundColor = '#10b981')}
+    >
+      ➕ Card 
+    </button>
+    
+
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
         gap: '1.5rem',
-        maxWidth: '96rem',
+        maxWidth: '20rem',
         margin: '0 auto'
       }}>
         {products.map((prod) => (
@@ -104,7 +152,7 @@ const Product = () => {
                   transition: 'background-color 0.3s ease'
                 }}
               >
-                {isInCart(prod._id) ? '✅ Added' : 'Add to Cart'}
+                {isInCart(prod._id) ? '✅ Edit' : 'Add to Cart'}
               </button>
             </div>
           </div>

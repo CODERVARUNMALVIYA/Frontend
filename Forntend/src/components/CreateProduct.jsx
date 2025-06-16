@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from '../../utils/axios';
+import axios from '../utils/axios';
+import { useNavigate } from 'react-router-dom';
 
 const CreateProduct = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +11,11 @@ const CreateProduct = () => {
   });
 
   const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+   navigate(-1);
+  };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -141,6 +147,23 @@ const CreateProduct = () => {
           Add Product
         </button>
       </form>
+      <button
+      onClick={handleBack}
+      style={{
+        marginTop:'1rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#2563eb',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '0.375rem',
+        cursor: 'pointer',
+        fontWeight: '500',
+      }}
+      onMouseOver={(e) => (e.target.style.backgroundColor = '#1d4ed8')}
+      onMouseOut={(e) => (e.target.style.backgroundColor = '#2563eb')}
+    >
+      🔙 Go Back
+    </button>
     </div>
   );
 };

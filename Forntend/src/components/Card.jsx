@@ -1,7 +1,7 @@
-// src/pages/Card.jsx
+
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../redux/slices/cartSlice';
+import { removeFromCart } from '../redux/Slice/slice';
 import { useNavigate } from 'react-router-dom';
 
 const Card = () => {
@@ -15,7 +15,9 @@ const Card = () => {
 
   return (
     <div style={{ padding: '1.5rem' }}>
+      
       <h2 style={{ textAlign: 'center' }}>🛒 Your Cart</h2>
+      
       {cartItems.length === 0 ? (
         <p style={{ textAlign: 'center' }}>Your cart is empty.</p>
       ) : (
@@ -31,7 +33,14 @@ const Card = () => {
               <button onClick={() => dispatch(removeFromCart(item._id))}>Remove</button>
             </div>
           ))}
-          <button onClick={handleCheckout} style={{ marginTop: '1rem' }}>
+          <button onClick={handleCheckout} style={{   marginTop:'1rem',
+        padding: '0.5rem 1rem',
+        backgroundColor: '#2563eb',
+        color: '#fff',
+        border: 'none',
+        borderRadius: '0.375rem',
+        cursor: 'pointer',
+        fontWeight: '500', }}>
             Proceed to Checkout
           </button>
         </>
