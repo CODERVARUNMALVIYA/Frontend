@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../utils/axios';
+import axios from '../../utils/axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../redux/Slice/slice';
+import { addToCart } from '../redux/Slices/slice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
